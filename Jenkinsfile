@@ -28,7 +28,7 @@ pipeline {
       steps {
           container('codeql'){
              sh"""
-             git clone https://github.com/CMSgov/nimbus-pub-code-scanning-1.git
+             git clone --branch ${BRANCH_NAME} https://github.com/CMSgov/nimbus-pub-code-scanning-1.git
              """
           }
         }
