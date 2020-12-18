@@ -63,7 +63,7 @@ pipeline {
              cd nimbus-pub-code-scanning-1
              mkdir -p /tmp/scan-results
              codeql-runner-linux analyze --repository CMSgov/nimbus-pub-code-scanning-1 --github-url https://github.com --commit ${GIT_COMMIT}  --github-auth ${AUTH} --output-dir /tmp/scan-results --ref refs/heads/${BRANCH_NAME}
-             aws s3 cp /tmp/scan-results/ s3://nimbus-code-scanning-results/master --recursive
+             aws s3 cp /tmp/scan-results/ s3://nimbus-code-scanning-results/develop --recursive
              set +e
              cat /tmp/scan-results/java-builtin.sarif | jq -e '.runs[0].results | select(length > 0)'
              if [ "\$?" -eq 0 ]; then exit 1; fi
